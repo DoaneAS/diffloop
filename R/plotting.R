@@ -74,14 +74,14 @@ setMethod("loopPlot", signature(x = "loops", y = "GRanges", organism = "ANY",
     if (geneinfo == "NA" && !cache) {
         # Get gene annotation from bioMart
         if (organism == "h") {
-            mart = useMart(biomart="ENSEMBL_MART_ENSEMBL", host="grch37.ensembl.org",
-                   path="/biomart/martservice" ,dataset="hsapiens_gene_ensembl")
-            chrom_biomart = gsub("chr", "", chrom)
+            mart = useMart(biomart="ENSEMBL_MART_ENSEMBL",
+                   dataset="hsapiens_gene_ensembl")
+            chrom_biomart = chrom
             geneinfo = getBM(attributes = c("chromosome_name", 
                 "exon_chrom_start", "exon_chrom_end", "external_gene_name", 
                 "strand"), 
                 mart = mart)
-        } else if (organism == "m" && geneinfo == "NA" && !cache) {
+        } else if (oranism == "m" && geneinfo == "NA" && !cache) {
             mart=useMart(host='may2012.archive.ensembl.org', 
                 biomart='ENSEMBL_MART_ENSEMBL', dataset = "mmusculus_gene_ensembl")
             chrom_biomart = gsub("chr", "", chrom)
